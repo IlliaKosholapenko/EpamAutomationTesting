@@ -4,16 +4,10 @@ import org.testng.annotations.Test;
 
 public class CheckEmailUnhappyPath {
 
-    @DataProvider(name = "data_provider_unhappy")
-    public static Object[] checkWrongEmail(){
-        return new Object[] { "32", "a@2.sdf", "ewsf"};
-    }
-
-    @Test(dataProvider = "data_provider_unhappy")
+    @Test(dataProvider = "data_provider_unhappy", dataProviderClass = EmailDataProviders.class)
     public static void test(String data){
 
        boolean actualResult = Email.isEmailCorrect(data);
-       boolean expectedResult = false;
-       Assert.assertEquals(expectedResult, actualResult);
+       Assert.assertFalse(actualResult);
     }
 }
